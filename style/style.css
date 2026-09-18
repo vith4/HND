@@ -1,34 +1,50 @@
+:root {
+    --bg-color: #121212;
+    --table-bg: #1E1E1E;
+    --text-color: #E0E0E0;
+    --text-muted: #CCCCCC;
+    --gold: #D4AF37;
+    --border-color: #333333;
+}
+
+[data-theme="light"] {
+    --bg-color: #f5f0e8;
+    --table-bg: #faf5ed;
+    --text-color: #1a1208;
+    --text-muted: #6a5a40;
+    --gold: #C9A84C;
+    --border-color: rgba(139,100,30,0.2);
+}
+
 body {
-    background-color: #121212;
-    color: #E0E0E0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
 }
-
 
 table {
-    background-color: #1E1E1E;
-    border-color: #C5A059;
-    color: #E0E0E0;
+    background-color: var(--table-bg);
+    border-color: var(--gold);
+    color: var(--text-color);
     border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
 }
 
-
 td, th {
-    border-color: #333333;
+    border-color: var(--border-color);
     padding: 20px;
 }
 
-
 h1 {
-    color: #D4AF37;
+    color: var(--gold);
     font-family: 'Georgia', serif;
     letter-spacing: 1px;
 }
-
 
 ul {
     line-height: 1.6;
@@ -36,5 +52,22 @@ ul {
 
 li {
     margin-bottom: 8px;
-    color: #CCCCCC;
+    color: var(--text-muted);
+}
+
+.theme-btn {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.theme-btn:hover {
+    background: var(--gold);
+    color: var(--bg-color);
 }
