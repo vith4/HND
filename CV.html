@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,43 +7,71 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-  <div style="text-align: right; width: 50%; margin: 0 auto; padding-top: 10px;">
-        <button id="themeToggle" class="theme-btn">☀️</button>
+    <div class="cv-container">
+        <div style="text-align: right; margin-bottom: 20px;">
+            <button id="themeToggle" class="theme-btn">☀️</button>
+        </div>
+
+        <header class="cv-header">
+            <h1>Software Engineering Portfolio</h1>
+            <h1>M.Vithusath</h1><br>
+        </header>
+
+        <section class="cv-section">
+            <h1>Technical Arsenal & Skills</h1>
+            <div class="skills-grid">
+              <div class="skill-card">
+                <div class="skill-name">Python</div>
+                <div class="skill-bar"><div class="skill-bar-fill" style="width: 88%;"></div></div>
+                <div class="skill-pct"><span>Proficiency</span><span>88%</span></div>
+              </div>
+              
+              <div class="skill-card">
+                <div class="skill-name">C# & .NET</div>
+                <div class="skill-bar"><div class="skill-bar-fill" style="width: 82%;"></div></div>
+                <div class="skill-pct"><span>Proficiency</span><span>82%</span></div>
+              </div>
+
+              <div class="skill-card">
+                <div class="skill-name">Web Development</div>
+                <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+                <div class="skill-pct"><span>Proficiency</span><span>85%</span></div>
+              </div>
+
+              <div class="skill-card">
+                <div class="skill-name">Database Management</div>
+                <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+                <div class="skill-pct"><span>Proficiency</span><span>80%</span></div>
+              </div>
+            </div>
+        </section>
+
+        <section class="cv-section">
+            <h1>Languages</h1>
+            <ul>
+              <li>Tamil</li>
+              <li>English</li>
+            </ul>
+        </section>
+
+        <section class="cv-section">
+            <h1>Education</h1>
+            <ul>
+              <li>HND in Software Engineering</li>
+              <li>Diploma in Information and Communication Technology</li>
+              <li>Diploma in English Language</li>
+            </ul>
+        </section>
+
+        <section class="cv-section">
+            <h1>Hobbies</h1>
+            <ul>
+              <li>Reading</li>
+              <li>Playing Games</li>
+            </ul>
+        </section>
     </div>
-    <table align="center" , width="50%" border="1">
-      <tr>
-        <th>
-          <h1>Software Engineering Portfolio</h1>
-        </th>
-      </tr>
-      <td>
-        <table>
-          <h1>Technical Arsenal & Skills</h1>
-          <ul>
-            <li>Programing Languages: Python, C#</li>
-            <li>Web Development: HTML</li>
-            <li>Graphic Designing: Adobe Photoshop</li>
-            <li>Database Management</li>
-          </ul>
-          <h1>Languages</h1>
-          <ul>
-            <li>Tamil</li>
-            <li>English</li>
-          </ul>
-          <h1>Education</h1>
-          <ul>
-            <li>HND in Software Engineering</li>
-            <li>Diploma in Informatio and Communication Technology</li>
-            <li>Diploma in English Language</li>
-          </ul>
-          <h1>Hobbies</h1>
-          <ul>
-            <li>Reading</li>
-            <li>Playing Games</li>
-          </ul>
-        </table>
-      </td>
-    </table>
+
     <section id="contact" class="contact-section">
       <div class="contact-container">
         <div class="section-header">
@@ -51,6 +79,7 @@
         </div>
 
         <div class="contact-inner">
+          <!-- Left Side: Direct Info -->
           <div class="contact-info">
             <div class="contact-field-group">
               <span class="field-label">Direct Email</span>
@@ -59,29 +88,43 @@
 
             <div class="contact-field-group">
               <span class="field-label">Repository Archive</span>
-              <a href="https://github.com/vith4" class="field-link">github.com/vith4</a>
+              <a href="https://github.com/vith4" target="_blank" class="field-link">github.com/vith4</a>
             </div>
           </div>
+
           <div class="contact-form-wrapper">
-            <form>
+            <form id="contactForm" novalidate>
               <div class="form-group">
-                <label class="form-label">Your Name</label>
-                <input type="text" class="form-input" placeholder="Enter your full name">
+                <label class="form-label">Full Name</label>
+                <input type="text" id="fullName" class="form-input" placeholder="Enter your full name">
+                <span class="error-msg">Please enter your full name.</span>
               </div>
+
               <div class="form-group">
                 <label class="form-label">Email Address</label>
-                <input type="email" class="form-input" placeholder="Enter your email address">
+                <input type="email" id="emailAddress" class="form-input" placeholder="Enter your email address">
+                <span class="error-msg">Please enter your email address.</span>
               </div>
+
+              <div class="form-group">
+                <label class="form-label">Subject</label>
+                <input type="text" id="subject" class="form-input" placeholder="Enter the subject">
+                <span class="error-msg">Please enter a subject.</span>
+              </div>
+
               <div class="form-group">
                 <label class="form-label">Message</label>
-                <textarea class="form-textarea" placeholder="Tell me about your project or enquiry..."></textarea>
+                <textarea id="message" class="form-textarea" placeholder="Write your message"></textarea>
+                <span class="error-msg">Please enter your message.</span>
               </div>
+
               <button type="submit" class="submit-btn">Send Message</button>
             </form>
           </div>
         </div>
       </div>
     </section>
-    <script src="script/script.js" ></script>
+
+    <script src="script/newscript.js"></script>
 </body>
 </html>
