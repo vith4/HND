@@ -40,8 +40,14 @@ if (contactForm) {
 
         const nameVal = nameInput.value.trim();
         const nameErrorSpan = nameGroup.querySelector('.error-msg');
+        const nameRegex = /^[A-Za-z\s]+$/;
+
         if (nameVal === '') {
             nameErrorSpan.textContent = 'Please enter your full name.';
+            nameGroup.classList.add('error');
+            isValid = false;
+        } else if (!nameRegex.test(nameVal)) {
+            nameErrorSpan.textContent = 'Full name should only contain letters and spaces (no numbers or special characters).';
             nameGroup.classList.add('error');
             isValid = false;
         } else if (nameVal.length < 3) {
