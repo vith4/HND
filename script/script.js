@@ -21,33 +21,79 @@ if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const nameInput = contactForm.querySelector('input[type="text"]');
+        const nameInput = contactForm.querySelector('#fullName') || contactForm.querySelector('input[type="text"]');
         const emailInput = contactForm.querySelector('input[type="email"]');
+        const subjectInput = contactForm.querySelector('#subject');
         const messageInput = contactForm.querySelector('textarea');
         const btn = contactForm.querySelector('.submit-btn');
 
-        const nameGroup = nameInput.closest('.form-group');
-        const emailGroup = emailInput.closest('.form-group');
-        const messageGroup = messageInput.closest('.form-group');
+        const nameGroup = nameInput ? nameInput.closest('.form-group') : null;
+        const emailGroup = emailInput ? emailInput.closest('.form-group') : null;
+        const subjectGroup = subjectInput ? subjectInput.closest('.form-group') : null;
+        const messageGroup = messageInput ? messageInput.closest('.form-group') : null;
 
         let isValid = true;
 
-        [nameGroup, emailGroup, messageGroup].forEach(group => {
-            group.classList.remove('error');
+        [nameGroup, emailGroup, subjectGroup, messageGroup].forEach(group => {
+            if (group) group.classList.remove('error');
         });
 
-        if (nameInput.value.trim() === '') {
+        const nameVal = nameInput.value.trim();
+        const nameErrorSpan = nameGroup.querySelector('.error-msg');
+        if (nameVal === '') {
+            nameErrorSpan.textContent = 'Please enter your full name.';
+            nameGroup.classList.add('error');
+            isValid = false;
+        } else if (nameVal.length < 3) {
+            nameErrorSpan.textContent = 'Full name must be at least 3 characters long.';
             nameGroup.classList.add('error');
             isValid = false;
         }
 
+        const emailVal = emailInput.value.trim();
+        const emailErrorSpan = emailGroup.querySelector('.error-msg');
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailInput.value.trim())) {
+        
+        if (emailVal === '') {
+            emailErrorSpan.textContent = 'Please enter your email address.';
             emailGroup.classList.add('error');
             isValid = false;
+        } else if (!emailVal.includes('@')) {
+            emailErrorSpan.textContent = "Please include an '@' in the email address. '" + emailVal + "' is missing an '@'.";
+            emailGroup.classList.add('error');
+            isValid = false;
+        } else if (!emailVal.includes('.')) {
+            emailErrorSpan.textContent = "Please include a domain extension (like .com) in the email address.";
+            emailGroup.classList.add('error');
+            isValid = false;
+        } else if (!emailRegex.test(emailVal)) {
+            emailErrorSpan.textContent = 'Please enter a valid email address format.';
+            emailGroup.classList.add('error');
+            isValid = false;
+        }   
+
+        if (subjectInput) {
+            const subjectVal = subjectInput.value.trim();
+            const subjectErrorSpan = subjectGroup.querySelector('.error-msg');
+            if (subjectVal === '') {
+                subjectErrorSpan.textContent = 'Please enter a subject.';
+                subjectGroup.classList.add('error');
+                isValid = false;
+            } else if (subjectVal.length < 4) {
+                subjectErrorSpan.textContent = 'Subject must be at least 4 characters long.';
+                subjectGroup.classList.add('error');
+                isValid = false;
+            }
         }
 
-        if (messageInput.value.trim() === '') {
+        const messageVal = messageInput.value.trim();
+        const messageErrorSpan = messageGroup.querySelector('.error-msg');
+        if (messageVal === '') {
+            messageErrorSpan.textContent = 'Please enter your message.';
+            messageGroup.classList.add('error');
+            isValid = false;
+        } else if (messageVal.length < 10) {
+            messageErrorSpan.textContent = 'Message must be at least 10 characters long.';
             messageGroup.classList.add('error');
             isValid = false;
         }
